@@ -12,11 +12,16 @@ function Seat(props){
 
   const [seatStatus,setSeatStatus] = useState(Array(70).fill(false))
   const movieData = props.selectInfo
+  const [timeSelect,setTimeSelect] = useState('')
 
   return (
     <div className='seatAndScreen'>
       <div className="infoContainer">
         <img src={movieData.imgUrl}></img>
+        <div className="info">
+          <h4>{movieData.name}</h4>
+          <h5 onClick={()=>setTime(index)}>{movieData.time}</h5>
+        </div>
       </div>
       <div className="timeContainer">
         {timeList.map((e,index)=>{
@@ -48,6 +53,9 @@ function Seat(props){
     const newArr = [...seatStatus]
     newArr[i] = !newArr[i]
     setSeatStatus(newArr)
+  }
+  function setTime(i){
+    setTimeSelect(timeList[i])
   }
 
 }

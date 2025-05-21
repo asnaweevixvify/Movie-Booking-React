@@ -1,0 +1,102 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color: #0f0f0f;
+}
+body{
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+.seatcontainer{
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 920px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.seat{
+  width: 40px;
+  height: 40px;
+  border: 0px solid transparent;
+  border-radius: 10px 10px 0px 0px;
+  cursor: pointer;
+}
+.blank{
+  background-color: red;
+}
+.selected{
+  background-color: yellow;
+}
+.moviecontainer img{
+  width: 400px;
+  height: 600px;
+  object-fit: cover;
+}
+.movieAll{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+.movieTitle{
+  text-align: center;
+  font-family: 'Kanit';
+  font-weight: 400;
+  font-size: 25px;
+  background-color: black;
+  margin-top: -5px;
+}
+a{
+  color: white;
+}
+a:hover{
+  color: white;
+}
+.moviecontainer{
+  transition: transform 0.2s;
+}
+.moviecontainer:hover{
+  transform: scale(1.02);
+  cursor: pointer;
+}
+.timeContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: 90px;
+  margin-bottom: 50px;
+}
+.timeContainer h2{
+  font-size: 45px;
+  font-family: 'Kanit';
+  font-weight: 500;
+  background-color: white;
+  color: black;
+  padding: 5px 20px 5px 20px;
+  border: 0px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.seatAndScreen{
+  display: flex;
+  flex-direction: column;
+}
+.infoContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.infoContainer img{
+  width: 300px;
+  height: 500px;
+  object-fit: cover;
+}

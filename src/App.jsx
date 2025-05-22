@@ -5,6 +5,7 @@ import Home from './components/Home'
 import Login from './components/Login'
 import Nav from './components/Nav'
 import Register from './components/Register'
+import History from './components/History'
 import { Route, Routes } from 'react-router-dom'
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
   function getInfo(data){
     setSelectInfo(data)
   }
+  
   return(
     <>
     <Nav/>
@@ -21,6 +23,7 @@ function App() {
         <Route path='/booking' element={<Seat selectInfo={selectInfo}/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/register' element={<Register/>}></Route>
+        <Route path='/history' element={<History/>}></Route>
     </Routes>
     </>
   )

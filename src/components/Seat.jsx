@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import { db } from './Firebase';
 import { getFirestore, collection, getDocs , addDoc ,updateDoc, deleteDoc ,doc} from 'firebase/firestore/lite';
-
+import Swal from 'sweetalert2';
 
 function Seat(props){
     const location = useLocation()
@@ -15,7 +15,6 @@ function Seat(props){
     const [timeselect , setTimeSelect] = useState('')
     const [seatSelect , setSeatSelect] = useState([])
     const [selectSeatStatus,setSelectSeat] = useState(false)
-
 
     useEffect(()=>{
     for(let i=0;i<102;i++){
@@ -91,10 +90,10 @@ function Seat(props){
         })}
       </div>
       <div className="report">
-        <h3>ที่นั่งที่คุณเลือก{seatSelect.map((e)=><h4 className='seatCount'>{e}</h4>)}</h3>
+        <h3>ที่นั่งที่คุณเลือก{seatSelect.map((e,index)=><h4 className='seatCount' key={index}>{e}</h4>)}</h3>
         <h3>ราคา {seatSelect.length * 220} บาท </h3>
       </div>
-      <button className='booking'>Booking</button>
+      <button className='booking' onClick={sendData}>Booking</button>
     </div>
   )
   function setSeat(i){
@@ -107,6 +106,28 @@ function Seat(props){
     newArr[i] = true
     setTimelist(newArr)
     setTimeSelect(timeList[i])
+  }
+  function sendData(e){
+    e.preventDefault()
+    const data = {
+      name:movieData.name,
+      time:timeselect,
+      seat:seatSelect,
+      price:seatSelect.length*220
+    }
+    addDoc(collection(db,'movielist'),{
+      name:movieData.name,
+      time:timeselect,
+      seat:seatSelect,
+      price:seatSelect.length*220
+    })
+    Swal.fire({
+      title: "complete",
+      icon: "success",
+      draggable: true
+    }).then(()=>{
+      navigate('/');
+    })
   }
 
 }

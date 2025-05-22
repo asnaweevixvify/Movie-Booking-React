@@ -9,7 +9,7 @@ function Home(props){
             <div className="ads-container">
                 {Ads.map((e,index)=>{
                     return(
-                        <div className="box">
+                        <div className="box" key={index}>
                             <img src={e.imgUrl}></img>
                         </div>
                     )

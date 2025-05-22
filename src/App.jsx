@@ -8,11 +8,15 @@ import Register from './components/Register'
 import History from './components/History'
 import { Route, Routes } from 'react-router-dom'
 
+
 function App() {
   const [selectInfo,setSelectInfo] = useState([])
 
   function getInfo(data){
     setSelectInfo(data)
+  }
+  function getBook(data){
+      console.log(data);
   }
   
   return(

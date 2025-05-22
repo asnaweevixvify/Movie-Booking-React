@@ -5,7 +5,7 @@ import { useState , useEffect } from 'react'
 import { getFirestore, collection, getDocs , addDoc ,updateDoc, deleteDoc ,doc} from 'firebase/firestore/lite';
 
 
-function History() {
+function History(props) {
 
   const [dataList,setDataList] = useState([])
   useEffect(()=>{
@@ -16,10 +16,10 @@ function History() {
         ...e.data(),id:e.id
       }))
       setDataList(newItem)
+      props.getBook(newItem)
   }
   getList(db)
   },[])
-  console.log(dataList);
 
   return (
     <div></div>

@@ -231,3 +231,7 @@ li{
   justify-content: center;
   align-items: center;
 }
+.unAvail{
+  background-color: gray;
+  cursor:none;
+}

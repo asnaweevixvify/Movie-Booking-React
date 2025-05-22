@@ -39,6 +39,7 @@ body{
   width: 365px;
   height: 600px;
   object-fit: cover;
+  border: 3px solid white;
 }
 .movieAll{
   display: flex;
@@ -167,7 +168,7 @@ a:hover{
 .ads-container{
   display: flex;
   margin-top: 80px;
-  width: 800px;
+  width: 1205px;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;

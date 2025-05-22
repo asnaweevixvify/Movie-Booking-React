@@ -1,18 +1,32 @@
 import { useState , useEffect } from 'react'
 import '../components/App.css'
 import timeList from './Time'
+import { useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+
 
 function Seat(props){
+    const location = useLocation()
+    const navigate = useNavigate()
     const [arr,setArr] = useState([])
-  useEffect(()=>{
+    const [timelist,setTimelist] = useState(Array(timeList.length).fill(false))
+    const [timeselect , setTimeSelect] = useState('')
+
+
+    useEffect(()=>{
     for(let i=0;i<102;i++){
       setArr((oldnum)=>{return [...oldnum,i]})
   }
   },[])
-
+  
   const [seatStatus,setSeatStatus] = useState(Array(70).fill(false))
   const movieData = props.selectInfo
-  const [timeSelect,setTimeSelect] = useState('')
+
+  useEffect(()=>{
+    if(movieData.length ===0){
+      navigate('/');
+    }
+  },[])
 
   return (
     <div className='seatAndScreen'>
@@ -20,14 +34,15 @@ function Seat(props){
         <img src={movieData.imgUrl}></img>
         <div className="info">
           <h4>{movieData.name}</h4>
-          <h5 onClick={()=>setTime(index)}>{movieData.time}</h5>
+          <h5 >{movieData.time}</h5>
         </div>
       </div>
       <div className="timeContainer">
         {timeList.map((e,index)=>{
+          const timeChoose = timelist[index] ? 'book' : 'unselect'
           return(
             <div key={index}>
-              <h2>{e.time}</h2>
+              <h2 className={timeChoose} onClick={()=>setTime(index)}>{e.time}</h2>
             </div>
           )
         })}
@@ -55,6 +70,9 @@ function Seat(props){
     setSeatStatus(newArr)
   }
   function setTime(i){
+    const newArr = (Array(timeList.length).fill(false))
+    newArr[i] = true
+    setTimelist(newArr)
     setTimeSelect(timeList[i])
   }
 

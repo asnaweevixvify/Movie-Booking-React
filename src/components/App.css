@@ -235,3 +235,45 @@ li{
   background-color: gray;
   cursor:none;
 }
+.his-container ul{
+  display: flex;
+  width: 1500px;
+  height: 70px;
+  list-style: none;
+  border: 3px solid white;
+  border: 3px solid black;
+}
+.list-topic{
+  background-color: blueviolet;
+}
+.his-container{
+  margin-top: 90px;
+  display: flex;
+  flex-direction: column;
+}
+.his-container ul li{
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Kanit';
+  font-size: 30px;
+  margin-left: 10px;
+  flex: 1;
+}
+.his-container ul li h4{
+  color: black;
+}
+.seatList{
+  display: flex;
+}
+.listUl{
+  background-color: white;
+}
+.list-topic ul li{
+  color: white;
+}
+.seatList{
+  display: flex;
+  gap: 20px;
+}

@@ -27,7 +27,7 @@ function Nav(){
         <div className="nav-container">
             <ul>
                 <Link to='/'><li>Home</li></Link>
-                <Link to='/history'><li>History</li></Link>
+                {status && <Link to='/history'><li>History</li></Link>}
                 {!status && <Link to='/login'><li>Login</li></Link>}
                 {status && <li onClick={logOut}>Sign out</li>}
             </ul>

@@ -8,6 +8,7 @@ import { getFirestore, collection, getDocs , addDoc ,updateDoc, deleteDoc ,doc} 
 function History(props) {
 
   const [dataList,setDataList] = useState([])
+  const user = auth.currentUser
   useEffect(()=>{
     async function getList(db){
       const empCol = collection(db,'movielist')
@@ -16,13 +17,33 @@ function History(props) {
         ...e.data(),id:e.id
       }))
       setDataList(newItem)
-      props.getBook(newItem)
   }
   getList(db)
   },[])
 
   return (
-    <div></div>
+    <div className='his-container'>
+      <div className="list-topic">
+            <ul>
+              <li>ชื่อภาพยนตร์</li>
+              <li>รอบฉาย</li>
+              <li className='seatList'>ที่นั่ง</li>
+            </ul>
+          </div>
+      {dataList.map((e,index)=>{
+        if(e.uid === user.uid){
+          return(
+            <div className="list">
+              <ul className='listUl'>
+                <li>{e.name}</li>
+                <li>{e.time}</li>
+                <li className='seatList'>{e.seat.map(e=><h4>{e}</h4>)}</li>
+              </ul>
+            </div>
+          )
+        }
+      })}
+    </div>
   )
 }
 

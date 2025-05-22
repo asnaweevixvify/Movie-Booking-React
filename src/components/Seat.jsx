@@ -147,17 +147,13 @@ function Seat(props){
   }
   function sendData(e){
     e.preventDefault()
-    const data = {
-      name:movieData.name,
-      time:timeselect,
-      seat:seatSelect,
-      price:seatSelect.length*220
-    }
+    const user = auth.currentUser
     addDoc(collection(db,'movielist'),{
       name:movieData.name,
       time:timeselect,
       seat:seatSelect,
-      price:seatSelect.length*220
+      price:seatSelect.length*220,
+      uid:user.uid
     })
     Swal.fire({
       title: "complete",

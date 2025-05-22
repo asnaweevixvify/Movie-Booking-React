@@ -3,6 +3,8 @@ import '../components/App.css'
 import timeList from './Time'
 import { useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+import { db } from './Firebase';
+import { getFirestore, collection, getDocs , addDoc ,updateDoc, deleteDoc ,doc} from 'firebase/firestore/lite';
 
 
 function Seat(props){
@@ -11,6 +13,8 @@ function Seat(props){
     const [arr,setArr] = useState([])
     const [timelist,setTimelist] = useState(Array(timeList.length).fill(false))
     const [timeselect , setTimeSelect] = useState('')
+    const [seatSelect , setSeatSelect] = useState([])
+    const [selectSeatStatus,setSelectSeat] = useState(false)
 
 
     useEffect(()=>{
@@ -28,10 +32,34 @@ function Seat(props){
     }
   },[])
 
+  useEffect(()=>{
+    const select = seatStatus.map((e,index)=>{
+      if(e === true){
+        return index
+      }
+      else{
+        return null
+      }
+    }).filter((e,index)=>{
+      return e != null
+    })
+    setSeatSelect(select)
+  },seatStatus)
+
+  useEffect(()=>{
+    if(seatStatus.length>0){
+      setSelectSeat(true)
+    }
+    else{
+      setSelectSeat(false)
+    }
+  },[seatStatus])
+
   return (
     <div className='seatAndScreen'>
       <div className="infoContainer">
         <img src={movieData.imgUrl}></img>
+        <p className='line'></p>
         <div className="info">
           <h4>{movieData.name}</h4>
           <h5 >{movieData.time}</h5>
@@ -62,6 +90,11 @@ function Seat(props){
           )
         })}
       </div>
+      <div className="report">
+        <h3>ที่นั่งที่คุณเลือก{seatSelect.map((e)=><h4 className='seatCount'>{e}</h4>)}</h3>
+        <h3>ราคา {seatSelect.length * 220} บาท </h3>
+      </div>
+      <button className='booking'>Booking</button>
     </div>
   )
   function setSeat(i){

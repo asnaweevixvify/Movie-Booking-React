@@ -153,7 +153,8 @@ function Seat(props){
       time:timeselect,
       seat:seatSelect,
       price:seatSelect.length*220,
-      uid:user.uid
+      uid:user.uid,
+      date:new Date().toLocaleString()
     })
     Swal.fire({
       title: "complete",

@@ -27,6 +27,7 @@ function History(props) {
             <ul>
               <li>ชื่อภาพยนตร์</li>
               <li>รอบฉาย</li>
+              <li>วัน/เวลาที่จอง</li>
               <li className='seatList'>ที่นั่ง</li>
             </ul>
           </div>
@@ -37,6 +38,7 @@ function History(props) {
               <ul className='listUl'>
                 <li>{e.name}</li>
                 <li>{e.time}</li>
+                <li>{e.date}</li>
                 <li className='seatList'>{e.seat.map(e=><h4>{e}</h4>)}</li>
               </ul>
             </div>

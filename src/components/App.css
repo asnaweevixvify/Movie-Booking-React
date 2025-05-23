@@ -29,6 +29,23 @@ body{
   border-radius: 10px 10px 0px 0px;
   cursor: pointer;
 }
+.seatstatusAll{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  gap: 50px;
+}
+.seatInfo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.seatInfo h5{
+  font-size: 20px;
+}
 .blank{
   background-color: red;
 }
@@ -213,7 +230,7 @@ li{
 }
 .line{
   width: 5px;
-  height: 90px;
+  height: 130px;
   background-color: white;
   opacity: 0.3;
 }
@@ -276,4 +293,15 @@ li{
 .seatList{
   display: flex;
   gap: 20px;
+}
+.info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.info h4,h5{
+  font-family: 'Kanit';
+  font-weight: 500;
+  color: white;
 }

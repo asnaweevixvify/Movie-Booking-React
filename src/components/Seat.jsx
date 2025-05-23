@@ -7,6 +7,7 @@ import { db } from './Firebase';
 import { getFirestore, collection, getDocs , addDoc ,updateDoc, deleteDoc ,doc} from 'firebase/firestore/lite';
 import Swal from 'sweetalert2';
 import { auth } from './Firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
 function Seat(props){
     const location = useLocation()
@@ -91,6 +92,18 @@ function Seat(props){
     }
   },[timeselect,seatSelect])
 
+  const [status, setStatus] = useState(false);
+    useEffect(() => {
+        const unsubscribe =  onAuthStateChanged(auth, (user) => {
+          if (user) {
+            return;
+          } else {
+            navigate('/login');
+          }
+        });
+        return () => unsubscribe();
+      },[]);
+
   return (
     <div className='seatAndScreen'>
       <div className="infoContainer">
@@ -99,6 +112,7 @@ function Seat(props){
         <div className="info">
           <h4>{movieData.name}</h4>
           <h5 >{movieData.time}</h5>
+          <h5 >220 บาท</h5>
         </div>
       </div>
       <div className="timeContainer">
@@ -112,6 +126,20 @@ function Seat(props){
         })}
       </div>
       <div className="screen-container">
+        <div className="seatstatusAll">
+          <div className="seatInfo">
+            <div className="seat blank"></div>
+            <h5>ว่าง</h5>
+          </div>
+          <div className="seatInfo">
+            <div className="seat selected"></div>
+            <h5>เลือกที่นั่ง</h5>
+          </div>
+          <div className="seatInfo">
+            <div className="seat unAvail"></div>
+            <h5>ไม่ว่าง</h5>
+          </div>
+        </div>
         <svg viewBox="0 0 500 100" className="screen-curve">
             <path d="M 0 80 Q 250 0 500 80" stroke="white" strokeWidth="4" fill="none" />
         </svg>
